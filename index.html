@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SpatialAudio - Headphone Tester</title>
-    <meta name="description" content="Test your headphones with real-time 3D spatial sound positioning using Web Audio API.">
+    <meta name="description"
+        content="Test your headphones with real-time 3D spatial sound positioning using Web Audio API.">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="app-container">
         <header>
@@ -16,25 +19,16 @@
         </header>
 
         <main class="testing-area">
-            <div class="stage" id="stage">
-                <!-- Grid background -->
-                <div class="grid"></div>
-                <!-- Listener in the center -->
-                <div class="listener">
-                    <div class="headphone-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-                            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
-                        </svg>
-                    </div>
-                </div>
-                <!-- Moving sound source -->
-                <div class="sound-source" id="soundSource">
-                    <div class="ripple"></div>
-                    <div class="ripple delay"></div>
+            <div class="stage-container" id="stageContainer"
+                style="width: 100%; max-width: 600px; aspect-ratio: 1; border: 1px solid var(--border-color); border-radius: 50%; overflow: hidden; position: relative;">
+                <canvas id="webgl-canvas" style="width: 100%; height: 100%; display: block;"></canvas>
+                <!-- Loading overlay for GLB -->
+                <div id="loadingOverlay"
+                    style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 100;">
+                    <span style="color: var(--secondary); font-weight: 600;">Loading Face Model...</span>
                 </div>
             </div>
-            
+
             <div class="controls">
                 <button id="toggleAudioBtn" class="btn primary">Start Sound</button>
                 <div class="toggle-container">
@@ -49,10 +43,34 @@
                     <button class="sound-btn" data-sound="noise">Static</button>
                     <button class="sound-btn" data-sound="beep">Sonar</button>
                 </div>
+
+                <div class="dimension-selector" id="dimensionSelector">
+                    <button class="dim-btn active" data-dim="2d">2D Space</button>
+                    <button class="dim-btn" data-dim="3d">3D Space</button>
+                </div>
+
+                <!-- Elevation Control -->
+                <div class="elevation-control" id="elevationControlBlock"
+                    style="opacity: 0.3; pointer-events: none; transition: opacity 0.3s;">
+                    <label class="toggle-label">Elevation/Altitude (Y-axis): <span
+                            id="elevationValue">0.0</span></label>
+                    <input type="range" id="elevationSlider" min="-10" max="10" value="0" step="0.1"
+                        title="Adjust sound source height">
+                </div>
             </div>
         </main>
     </div>
 
-    <script src="app.js"></script>
+    <!-- Add Import Map for Three.js -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="app.js"></script>
 </body>
+
 </html>

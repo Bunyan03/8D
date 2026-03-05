@@ -24,7 +24,6 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow: hidden;
     background-image: radial-gradient(circle at 50% 0%, var(--panel-bg) 0%, transparent 50%);
 }
 
@@ -70,95 +69,22 @@ header p {
     width: 100%;
 }
 
-.stage {
-    width: var(--stage-size);
-    height: var(--stage-size);
-    border-radius: 50%;
-    position: relative;
-    border: 1px solid var(--border-color);
-    background: rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.5), 0 0 100px rgba(122, 59, 252, 0.1);
-    backdrop-filter: blur(10px);
-}
-
-.grid {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    border-radius: 50%;
-    background-image: 
-        linear-gradient(var(--border-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
-    background-size: 40px 40px;
-    background-position: center center;
-    opacity: 0.3;
-    mask-image: radial-gradient(circle, white 20%, transparent 80%);
-    -webkit-mask-image: radial-gradient(circle, white 20%, transparent 80%);
-}
-
-.listener {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 48px;
-    height: 48px;
-    background: var(--panel-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 50%;
+.elevation-control {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    z-index: 10;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    gap: 0.8rem;
+    width: 100%;
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
 }
 
-.headphone-icon svg {
-    width: 24px;
-    height: 24px;
-    color: var(--text-main);
-}
-
-.sound-source {
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    background: var(--secondary);
-    border-radius: 50%;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    cursor: grab;
-    z-index: 20;
-    box-shadow: 0 0 20px var(--secondary), 0 0 40px var(--secondary);
-    transition: transform 0.1s;
-}
-
-.sound-source:active {
-    cursor: grabbing;
-    transform: translate(-50%, -50%) scale(1.2);
-}
-
-.ripple {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: 2px solid var(--secondary);
-    animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.ripple.delay {
-    animation-delay: 1s;
-}
-
-@keyframes ping {
-    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
-    100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+.elevation-control input {
+    width: 100%;
+    max-width: 300px;
+    accent-color: var(--primary);
+    cursor: pointer;
 }
 
 .controls {
@@ -209,57 +135,60 @@ header p {
 
 /* The switch - the box around the slider */
 .switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 26px;
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
 }
 
 /* Hide default HTML checkbox */
 .switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
 /* The slider */
 .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(255,255,255,0.1);
-  transition: .4s;
-  border: 1px solid var(--border-color);
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: .4s;
+    border: 1px solid var(--border-color);
 }
 
 .slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: var(--text-muted);
-  transition: .4s;
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--text-muted);
+    transition: .4s;
 }
 
-input:checked + .slider {
-  background-color: var(--primary);
-  border-color: var(--primary);
+input:checked+.slider {
+    background-color: var(--primary);
+    border-color: var(--primary);
 }
 
-input:checked + .slider:before {
-  transform: translateX(24px);
-  background-color: white;
+input:checked+.slider:before {
+    transform: translateX(24px);
+    background-color: white;
 }
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+    border-radius: 34px;
 }
 
 .slider.round:before {
-  border-radius: 50%;
+    border-radius: 50%;
 }
 
 .toggle-label {
@@ -269,7 +198,7 @@ input:checked + .slider:before {
 
 .sounds-selector {
     display: flex;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 30px;
     padding: 0.3rem;
     border: 1px solid var(--border-color);
@@ -294,4 +223,33 @@ input:checked + .slider:before {
     background: var(--panel-bg);
     color: var(--secondary);
     box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.1);
+}
+
+.dimension-selector {
+    display: flex;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+    padding: 0.3rem;
+    border: 1px solid var(--border-color);
+}
+
+.dim-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dim-btn:hover {
+    color: var(--text-main);
+}
+
+.dim-btn.active {
+    background: var(--panel-bg);
+    color: var(--primary);
+    box-shadow: inset 0 0 10px rgba(122, 59, 252, 0.2);
 }
