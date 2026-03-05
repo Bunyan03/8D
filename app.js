@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scene.add(boundary);
 
         // Sound Orb
-        const orbGeo = new THREE.SphereGeometry(0.4, 32, 32);
+        const orbGeo = new THREE.SphereGeometry(0.7, 32, 32);
         const orbMat = new THREE.MeshStandardMaterial({
             color: 0x00f0ff,
             emissive: 0x005088,
