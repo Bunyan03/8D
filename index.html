@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpatialAudio - Headphone Tester</title>
+    <meta name="description" content="Test your headphones with real-time 3D spatial sound positioning using Web Audio API.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Spatial<span>Audio</span></h1>
+            <p>Put on your headphones. Drag the source or enable auto-orbit to test 3D sound positioning.</p>
+        </header>
+
+        <main class="testing-area">
+            <div class="stage" id="stage">
+                <!-- Grid background -->
+                <div class="grid"></div>
+                <!-- Listener in the center -->
+                <div class="listener">
+                    <div class="headphone-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <!-- Moving sound source -->
+                <div class="sound-source" id="soundSource">
+                    <div class="ripple"></div>
+                    <div class="ripple delay"></div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button id="toggleAudioBtn" class="btn primary">Start Sound</button>
+                <div class="toggle-container">
+                    <label class="switch">
+                        <input type="checkbox" id="autoOrbitToggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="toggle-label">Auto Orbit</span>
+                </div>
+                <div class="sounds-selector">
+                    <button class="sound-btn active" data-sound="engine">Engine</button>
+                    <button class="sound-btn" data-sound="noise">Static</button>
+                    <button class="sound-btn" data-sound="beep">Sonar</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
